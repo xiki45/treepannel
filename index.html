@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>可配置树状导航</title>
+    <style>
+        /* --- 基础样式 --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: white; font-family: "Microsoft YaHei", sans-serif; padding: 20px; }
+        .tree { 
+            background: transparent; 
+            box-shadow: none; 
+            max-width: 3000px; 
+            position: relative;
+        }
+        
+        ul { 
+            list-style: none; 
+            position: relative;
+        }
+        
+        li { 
+            margin: 5px 0; 
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        /* 文件夹展开时的连接线 */
+        li.active > ul::before {
+            content: '';
+            position: absolute;
+            left: 8px; /* 图标中心位置 */
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background-color: #ddd;
+            z-index: 0;
+        }
+        
+        /* 每个子项前面的连接线点 */
+        li li::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 12px; /* 垂直居中 */
+            width: 8px;
+            height: 1px;
+            background-color: #ddd;
+            z-index: 0;
+        }
+        
+        .tree-item { 
+            display: flex; 
+            align-items: center;
+            position: relative;
+            z-index: 1; /* 确保内容在线上方 */
+        }
+        
+        /* 链接样式 */
+        .tree a { 
+            color: #333; 
+            text-decoration: none; 
+            display: inline-block; 
+            padding: 5px; 
+            border-radius: 3px; 
+            transition: all 0.2s; 
+            margin-left: 5px; 
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .tree a:hover { 
+            background: #e3f2fd; 
+            color: #2196F3; 
+        }
+        
+        /* 图标容器样式 */
+        .item-icon {
+            display: inline-flex;
+			align-items: center;
+			justify-content: center;
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+			flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+            cursor: pointer; /* 文件夹图标可点击 */
+        }
+        
+        .favicon {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 2px;
+            background: #f5f5f5;
+            padding: 1px;
+        }
+        
+        /* 文件夹图标样式 - 黄色文件夹 */
+        .folder-icon {
+            font-size: 16px;
+            cursor: pointer;
+			line-height: 1;
+            color: #ffa726; /* 黄色 */
+            display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			height: 100%;
+        }
+        
+        /* 文件图标样式 */
+        .file-icon {
+            font-size: 14px;
+            text-align: center;
+            color: #78909c; /* 灰色 */
+			line-height: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			height: 100%;
+        }
+        
+        /* 纯文本/分割线样式 */
+        .label-text { 
+            color: #888; 
+            padding: 5px; 
+            margin-left: 5px; 
+            font-size: 0.9em;
+            position: relative;
+        }
+        
+        /* 纯文本项不需要图标 */
+        .tree-item:has(.label-text) .item-icon {
+            display: none;
+        }
+
+        /* 状态控制 */
+        .submenu { 
+            display: none; 
+            position: relative;
+        }
+        
+        .active > .submenu { 
+            display: block; 
+        }
+        
+        /* 最外层容器去除左侧padding */
+        #tree-root > ul {
+            padding-left: 0;
+        }
+        
+        /* ============= 控制按钮样式 ============= */
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+            padding: 8px;
+        }
+        
+        .expand-btn {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            color: white;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 250;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(33, 150, 243, 0.3);
+            
+            /* 高斯模糊效果 */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            
+            /* 玻璃拟态边框 */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .expand-btn:hover {
+            background: linear-gradient(135deg, #1976D2 0%, #0D47A1 100%);
+            box-shadow: 0 6px 24px rgba(33, 150, 243, 0.4);
+            transform: translateY(-2px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        
+        .expand-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(33, 150, 243, 0.2);
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .controls {
+                padding: 10px;
+            }
+            
+            .expand-btn {
+                padding: 10px 28px;
+                font-size: 15px;
+            }
+            
+            .item-icon {
+                width: 14px;
+                height: 14px;
+                margin-right: 6px;
+            }
+            
+            li {
+                padding-left: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 控制按钮区域 -->
+    <div class="controls">
+        <button id="expand-all-btn" class="expand-btn">展开</button>
+    </div>
+
+    <div id="tree-root" class="tree"></div>
+
+    <script>
+        // ==========================================
+        // 1. 配置区域
+        // ==========================================
+        const treeData = [
+            {
+                name: "观影",
+                children: [
+                    {
+                        name: "电影|电视剧-web",
+                        children: [
+                            { name: "厂长资源", url: "https://www.czzymovie.com/" },
+                            { name: "泥视频", url: "https://www.nivod.vip/" },
+                            { name: "大师兄影视", url: "https://dsxys.pro/" },
+							{ name: "LIBVIO", url: "https://www.libvio.site/" },
+							{ name: "剧迷", url: "https://gimy.tv/" },
+							{ name: "独播库", url: "https://www.dbku.tv/" }
+                        ]
+                    },
+                    {
+                        name: "二次元-web",
+                        children: [
+                            { name: "AGE动漫", url: "https://www.agedm.org/" },
+                            { name: "樱花动漫", url: "https://yhdmoe.com/" },
+                            { name: "嘀哩嘀哩", url: "https://dilidili.online/" },
+                            { name: "哈哩哈哩", url: "http://halihali21.com/" },
+							{ name: "Anime1.me", url: "https://anime1.me/" }
+                        ]
+                    }
+                ]
+            },
+            {
+                name: "网盘",
+                children: [
+                    {
+                        name: "网盘聚合搜索",
+                        children: [
+                            { name: "————————" },
+                            { name: "小云搜索", url: "https://www.yunso.net/" }
+                        ]
+                    },
+                    {
+                        name: "常用网盘资源站",
+                        children: [
+                            { name: "——百度网盘——" },
+                            { name: "学霸盘", url: "https://www.xuebapan.com/" },
+                            { name: "熊猫搜盘", url: "https://www.sopandas.cn/" },
+                            { name: "兄弟盘", url: "https://xiongdipan.com/" },
+                            { name: "——夸克网盘——" },
+                            { name: "夸克网盘小站", url: "https://kkxz.vip/" },
+                            { name: "——阿里云盘——" },
+                            { name: "UP云搜", url: "https://www.upyunso.com/" }
+                        ]
+                    }
+                ]
+            },
+            {
+                name: "教程",
+                children: [
+                    { name: "空的文件夹测试", children: [] },
+                    { name: "openwrt搭建rustdesk", url: "https://flowus.cn/ouuo/..." }
+                ]
+            },
+            {
+                name: "关于本站",
+                url: "#关于"
+            }
+        ];
+
+        // ==========================================
+        // 2. 核心逻辑 - 修改版（移除箭头，使用文件夹图标控制）
+        // ==========================================
+        
+        function createTree(nodes) {
+            if (!nodes || nodes.length === 0) return null;
+
+            const ul = document.createElement('ul');
+            ul.className = 'submenu';
+
+            nodes.forEach(node => {
+                const li = document.createElement('li');
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'tree-item';
+
+                // 判断是否为文件夹
+                const isFolder = node.children && Array.isArray(node.children);
+
+                // 创建图标容器
+                const iconSpan = document.createElement('span');
+                iconSpan.className = 'item-icon';
+                
+                // 创建链接或文本
+                if (node.url) {
+                    // 添加 favicon
+                    addFavicon(iconSpan, node.url, isFolder);
+                    
+                    const a = document.createElement('a');
+                    a.href = node.url;
+                    a.target = "_blank";
+                    a.textContent = node.name;
+                    a.className = isFolder ? 'folder' : 'file';
+                    
+                    itemDiv.appendChild(iconSpan);
+                    itemDiv.appendChild(a);
+                    
+                    // 如果是文件夹，图标可点击折叠/展开
+                    if (isFolder) {
+                        iconSpan.onclick = function(e) {
+                            e.stopPropagation();
+                            li.classList.toggle('active');
+                            updateButtonState();
+                        };
+                        // 点击文件夹文字也能折叠
+                        a.onclick = function(e) {
+                            e.preventDefault();
+                            li.classList.toggle('active');
+                            updateButtonState();
+                        };
+                    }
+                } else if (isFolder) {
+                    // 文件夹使用黄色文件夹图标
+                    const folderIcon = document.createElement('span');
+                    folderIcon.className = 'folder-icon';
+                    folderIcon.textContent = '📁';
+                    folderIcon.title = '点击展开/折叠';
+                    
+                    // 文件夹图标可点击折叠/展开
+                    folderIcon.onclick = function(e) {
+                        e.stopPropagation();
+                        li.classList.toggle('active');
+                        updateButtonState();
+                    };
+                    
+                    iconSpan.appendChild(folderIcon);
+                    
+                    const a = document.createElement('a');
+                    a.href = "javascript:void(0);";
+                    a.textContent = node.name;
+                    a.className = 'folder';
+                    
+                    // 点击文件夹文字也能折叠
+                    a.onclick = function(e) {
+                        e.preventDefault();
+                        li.classList.toggle('active');
+                        updateButtonState();
+                    };
+                    
+                    itemDiv.appendChild(iconSpan);
+                    itemDiv.appendChild(a);
+                } else {
+                    // 纯文本/分割线
+                    iconSpan.remove();
+                    const span = document.createElement('span');
+                    span.textContent = node.name;
+                    span.className = 'label-text';
+                    // 为了对齐，添加一个占位符
+                    const placeholder = document.createElement('span');
+                    placeholder.style.width = '16px';
+                    placeholder.style.display = 'inline-block';
+                    placeholder.style.flexShrink = '0';
+                    itemDiv.appendChild(placeholder);
+                    itemDiv.appendChild(span);
+                }
+
+                li.appendChild(itemDiv);
+
+                // 递归生成子树
+                if (isFolder) {
+                    const childUl = createTree(node.children);
+                    if (childUl) {
+                        li.appendChild(childUl);
+                    }
+                }
+
+                ul.appendChild(li);
+            });
+
+            return ul;
+        }
+
+        // ==========================================
+        // 3. Favicon 相关函数
+        // ==========================================
+        
+        function getFaviconUrl(url) {
+            try {
+                const urlObj = new URL(url);
+                return `https://www.google.com/s2/favicons?sz=32&domain=${urlObj.hostname}`;
+            } catch (e) {
+                console.warn('解析URL失败:', url, e);
+                return null;
+            }
+        }
+
+        function addFavicon(container, url, isFolder) {
+            if (isFolder) {
+                // 文件夹使用黄色文件夹图标
+                const folderIcon = document.createElement('span');
+                folderIcon.className = 'folder-icon';
+                folderIcon.textContent = '📁';
+                folderIcon.title = '点击展开/折叠';
+                container.appendChild(folderIcon);
+                return;
+            }
+            
+            const faviconUrl = getFaviconUrl(url);
+            
+            if (faviconUrl) {
+                const img = document.createElement('img');
+                img.src = faviconUrl;
+                img.alt = '';
+                img.className = 'favicon';
+                
+                img.onload = function() {
+                    container.appendChild(img);
+                };
+                
+                img.onerror = function() {
+                    // 失败时显示文件图标
+                    const fileIcon = document.createElement('span');
+                    fileIcon.className = 'file-icon';
+                    fileIcon.textContent = '📄';
+                    container.appendChild(fileIcon);
+                };
+                
+                setTimeout(() => {
+                    if (!img.complete && container.children.length === 0) {
+                        const fileIcon = document.createElement('span');
+                        fileIcon.className = 'file-icon';
+                        fileIcon.textContent = '📄';
+                        container.appendChild(fileIcon);
+                    }
+                }, 3000);
+            } else {
+                // 无法获取时显示文件图标
+                const fileIcon = document.createElement('span');
+                fileIcon.className = 'file-icon';
+                fileIcon.textContent = '📄';
+                container.appendChild(fileIcon);
+            }
+        }
+
+        // ==========================================
+        // 4. 展开/折叠功能
+        // ==========================================
+        let isAllExpanded = false;
+        
+        function toggleAllFolders() {
+            const allFolders = document.querySelectorAll('.tree li:has(.folder)');
+            
+            if (!isAllExpanded) {
+                allFolders.forEach(folder => {
+                    folder.classList.add('active');
+                });
+                isAllExpanded = true;
+                expandBtn.textContent = '折叠';
+            } else {
+                allFolders.forEach(folder => {
+                    folder.classList.remove('active');
+                });
+                isAllExpanded = false;
+                expandBtn.textContent = '展开';
+            }
+        }
+        
+        function updateButtonState() {
+            const allFolders = document.querySelectorAll('.tree li:has(.folder)');
+            const activeFolders = document.querySelectorAll('.tree li.active:has(.folder)');
+            
+            if (allFolders.length === activeFolders.length && allFolders.length > 0) {
+                isAllExpanded = true;
+                expandBtn.textContent = '折叠';
+            } else {
+                isAllExpanded = false;
+                expandBtn.textContent = '展开';
+            }
+        }
+
+        // ==========================================
+        // 5. 初始化
+        // ==========================================
+        
+        const rootContainer = document.getElementById('tree-root');
+        const treeDom = createTree(treeData);
+        if (treeDom) {
+            treeDom.style.display = 'block'; 
+            treeDom.style.paddingLeft = '0';
+            rootContainer.appendChild(treeDom);
+        }
+
+        const expandBtn = document.getElementById('expand-all-btn');
+        expandBtn.addEventListener('click', toggleAllFolders);
+        
+        setTimeout(updateButtonState, 100);
+
+    </script>
+</body>
+</html>
