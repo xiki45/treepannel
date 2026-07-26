@@ -1,0 +1,312 @@
+[
+  {
+    "name": "观影",
+    "children": [
+      {
+        "name": "电影|电视剧-web",
+        "children": [
+          {
+            "name": "厂长资源",
+            "url": "https://www.czzymovie.com/"
+          },
+          {
+            "name": "泥视频",
+            "url": "https://www.nivod.vip/"
+          },
+          {
+            "name": "大师兄影视",
+            "url": "shturl.cc/cBTAFH3sZF"
+          },
+          {
+            "name": "LIBVIO",
+            "url": "https://www.libvio.site/"
+          },
+          {
+            "name": "剧迷",
+            "url": "https://gimy.tv/"
+          },
+          {
+            "name": "独播库",
+            "url": "https://www.dbku.tv/"
+          },
+          {
+            "name": "网飞猫 | 防失联t.me/ncat99",
+            "url": "https://www.ncat22.com/"
+          },
+          {
+            "name": "在线之家",
+            "url": "https://www.zxzjhd.com/"
+          },
+          {
+            "name": "磁力熊",
+            "url": "https://www.cilixiong.cc/"
+          },
+          {
+            "name": "3Q影视",
+            "url": "https://qqqys.com/"
+          }
+        ]
+      },
+      {
+        "name": "二次元-web",
+        "children": [
+          {
+            "name": "AGE动漫",
+            "url": "https://www.agedm.org/"
+          },
+          {
+            "name": "樱花动漫",
+            "url": "https://yhdmoe.com/"
+          },
+          {
+            "name": "嘀哩嘀哩",
+            "url": "https://dilidili.online/"
+          },
+          {
+            "name": "哈哩哈哩",
+            "url": "http://halihali21.com/"
+          },
+          {
+            "name": "Anime1.me",
+            "url": "https://anime1.me/"
+          },
+          {
+            "name": "ebb | proxy",
+            "url": "https://ebb.io/"
+          }
+        ]
+      },
+      {
+        "name": "聚合动漫-app",
+        "children": [
+          {
+            "name": "纯纯看番 | 仅安卓",
+            "url": "https://easybangumi.org/"
+          },
+          {
+            "name": "Animeko | 多平台",
+            "url": "https://myani.org/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "下载",
+    "children": [
+      {
+        "name": "网盘",
+        "children": [
+          {
+            "name": "网盘资源站",
+            "children": [
+              {
+                "name": "聚合搜索"
+              },
+              {
+                "name": "小云搜索",
+                "url": "https://www.yunso.net/"
+              },
+              {
+                "name": "UP云搜",
+                "url": "https://www.upyunso.com/"
+              },
+              {
+                "name": "百度网盘"
+              },
+              {
+                "name": "学霸盘",
+                "url": "https://www.xuebapan.com/"
+              },
+              {
+                "name": "熊猫搜盘",
+                "url": "https://www.sopandas.cn/"
+              },
+              {
+                "name": "兄弟盘",
+                "url": "https://xiongdipan.com/"
+              },
+              {
+                "name": "夸克网盘"
+              },
+              {
+                "name": "夸克网盘小站",
+                "url": "https://kkxz.vip/"
+              },
+              {
+                "name": "阿里云盘"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "BT",
+        "children": [
+          {
+            "name": "动漫",
+            "children": [
+              {
+                "name": "动漫花园同步站",
+                "url": "https://dongmanhuayuan.myheartsite.com/#"
+              },
+              {
+                "name": "漫猫动漫",
+                "url": "https://www.comicat.org/"
+              },
+              {
+                "name": "Mikanani",
+                "url": "https://mikanani.me/"
+              },
+              {
+                "name": "爱恋动漫",
+                "url": "https://www.kisssub.org/"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "互联网",
+    "children": [
+      {
+        "name": "匿名邮箱",
+        "children": [
+          {
+            "name": "Simplelogin",
+            "url": "https://app.simplelogin.io/auth/login"
+          },
+          {
+            "name": "33Mail",
+            "url": "https://www.33mail.com/login"
+          },
+          {
+            "name": "Burnermail",
+            "url": "https://burnermail.io/"
+          }
+        ]
+      },
+      {
+        "name": "图床",
+        "children": [
+          {
+            "name": "晒图",
+            "url": "https://img.st/"
+          },
+          {
+            "name": "Nodeimage",
+            "url": "https://www.nodeimage.com/"
+          }
+        ]
+      },
+      {
+        "name": "论坛",
+        "children": [
+          {
+            "name": "Nodeseek",
+            "url": "https://www.nodeseek.com/"
+          },
+          {
+            "name": "V2ex",
+            "url": "https://www.v2ex.com/"
+          },
+          {
+            "name": "Linuxdo",
+            "url": "https://linux.do/"
+          }
+        ]
+      },
+      {
+        "name": "短链接",
+        "children": [
+          {
+            "name": "num.to",
+            "url": "https://num.to/zh-cn/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "网页工具",
+    "children": [
+      {
+        "name": "iptest",
+        "children": [
+          {
+            "name": "查询网ip138",
+            "url": "https://www.ip138.com/"
+          },
+          {
+            "name": "ip111.cn | 国内、国外、谷歌测试",
+            "url": "https://ip111.cn/"
+          },
+          {
+            "name": "IPAddress.my | proxy",
+            "url": "https://www.ipaddress.my/"
+          },
+          {
+            "name": "IP地址查询",
+            "url": "https://tool.lu/ip/"
+          },
+          {
+            "name": "IPv6地址查询工具社区版",
+            "url": "https://ip.zxinc.org/ipquery/"
+          },
+          {
+            "name": "IP查询(ipw.cn)",
+            "url": "https://ipw.cn/"
+          },
+          {
+            "name": "ipcheck | 可部署github.com/jason5ng32/MyIP",
+            "url": "https://ipcheck.ing/#/"
+          },
+          {
+            "name": "IPv6连接测试 | 不支持境内v6",
+            "url": "https://test-ipv6.com/"
+          },
+          {
+            "name": "端口扫描",
+            "url": "https://tool.chinaz.com/port"
+          },
+          {
+            "name": "UDPing检测工具",
+            "url": "https://www.boce.com/udping"
+          },
+          {
+            "name": "ITdog",
+            "url": "https://www.itdog.cn/"
+          },
+          {
+            "name": "WebRTC Leak Test",
+            "url": "https://browserleaks.com/webrtc"
+          },
+          {
+            "name": "网络空间测绘",
+            "url": "https://fofa.info/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "教程",
+    "children": [
+      {
+        "name": "空的文件夹测试",
+        "children": [
+          {
+            "name": "openwrt搭建rustdesk",
+            "url": "https://flowus.cn/ouuo/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "关于本站",
+    "url": "#关于"
+  }
+]
