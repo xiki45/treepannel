@@ -44,6 +44,10 @@
           {
             "name": "3Q影视",
             "url": "https://qqqys.com/"
+          },
+          {
+            "name": "LibreTV by cloudfare",
+            "url": "https://libretv-d9v.pages.dev/"
           }
         ]
       },
@@ -163,13 +167,26 @@
                 "url": "https://www.kisssub.org/"
               }
             ]
+          },
+          {
+            "name": "影视",
+            "children": [
+              {
+                "name": "磁力熊",
+                "url": "https://www.cilixiong.org/"
+              },
+              {
+                "name": "Seedhub | 防失联sidhub.cc",
+                "url": "https://www.seedhub.cc/"
+              }
+            ]
           }
         ]
       }
     ]
   },
   {
-    "name": "互联网",
+    "name": "冲浪",
     "children": [
       {
         "name": "匿名邮箱",
@@ -226,68 +243,196 @@
             "url": "https://num.to/zh-cn/"
           }
         ]
+      },
+      {
+        "name": "权益回收平台",
+        "children": [
+          {
+            "name": "续赚网",
+            "url": "http://www.xuzuan.cn/#/index"
+          }
+        ]
+      },
+      {
+        "name": "网络测试",
+        "children": [
+          {
+            "name": "Iptest",
+            "children": [
+              {
+                "name": "查询网ip138",
+                "url": "https://www.ip138.com/"
+              },
+              {
+                "name": "ip111.cn | 国内、国外、谷歌测试",
+                "url": "https://ip111.cn/"
+              },
+              {
+                "name": "IPAddress.my | proxy",
+                "url": "https://www.ipaddress.my/"
+              },
+              {
+                "name": "IP地址查询",
+                "url": "https://tool.lu/ip/"
+              },
+              {
+                "name": "IPv6地址查询工具社区版",
+                "url": "https://ip.zxinc.org/ipquery/"
+              },
+              {
+                "name": "IP查询(ipw.cn)",
+                "url": "https://ipw.cn/"
+              },
+              {
+                "name": "ipcheck | 可部署github.com/jason5ng32/MyIP",
+                "url": "https://ipcheck.ing/#/"
+              },
+              {
+                "name": "IPv6连接测试 | 不支持境内v6",
+                "url": "https://test-ipv6.com/"
+              },
+              {
+                "name": "IP可用性检查工具 - IP被墙检测, 端口检查",
+                "url": "https://ip112.cn/"
+              },
+              {
+                "name": "本机IP查询 & 网络延迟检测",
+                "url": "https://ip.hi.hn/"
+              }
+            ]
+          },
+          {
+            "name": "Speedtest",
+            "children": [
+              {
+                "name": "南大测速 NJU Test",
+                "url": "https://test.nju.edu.cn/"
+              },
+              {
+                "name": "智能测速服务系统",
+                "url": "http://speed.sd.chinamobile.com/speedtest/task.html#/speedTest"
+              },
+              {
+                "name": "网络面板",
+                "url": "https://net.ljxnet.cn/"
+              },
+              {
+                "name": "Speedtest by Ookla",
+                "url": "https://www.speedtest.net/"
+              },
+              {
+                "name": "Internet Speed Test - Measure Network Performance | Cloudflare",
+                "url": "https://speed.cloudflare.com/"
+              }
+            ]
+          },
+          {
+            "name": "Port",
+            "children": [
+              {
+                "name": "端口扫描",
+                "url": "https://tool.chinaz.com/port"
+              },
+              {
+                "name": "UDPing检测工具",
+                "url": "https://www.boce.com/udping"
+              }
+            ]
+          },
+          {
+            "name": "BGP",
+            "children": [
+              {
+                "name": "Hurricane Electric BGP Toolkit",
+                "url": "https://bgp.he.net/"
+              },
+              {
+                "name": "BGP.Tools",
+                "url": "https://bgp.tools/"
+              }
+            ]
+          },
+          {
+            "name": "聚合",
+            "children": [
+              {
+                "name": "ITdog",
+                "url": "https://www.itdog.cn/"
+              },
+              {
+                "name": "ilatency",
+                "url": "https://ilatency.com/"
+              }
+            ]
+          },
+          {
+            "name": "其他",
+            "children": [
+              {
+                "name": "WebRTC Leak Test",
+                "url": "https://browserleaks.com/webrtc"
+              },
+              {
+                "name": "网络空间测绘",
+                "url": "https://fofa.info/"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "虚拟地址",
+        "children": [
+          {
+            "name": "随机地址和电话号码生成器",
+            "url": "https://www.randaddress.com/zh/"
+          }
+        ]
+      },
+      {
+        "name": "网盘推广",
+        "children": [
+          {
+            "name": "聚合KOC",
+            "url": "https://jkkoc.com:9090/#/"
+          },
+          {
+            "name": "聚客KOC邀请",
+            "url": "https://cfbed.328345.xyz/file/1785325579374_image.webp"
+          }
+        ]
+      },
+      {
+        "name": "VPS",
+        "children": [
+          {
+            "name": "闲置VPS卖流量",
+            "children": [
+              {
+                "name": "traffmonetizer",
+                "url": "https://app.traffmonetizer.com/sign-in"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
   {
-    "name": "网页工具",
+    "name": "AI",
     "children": [
       {
-        "name": "iptest",
+        "name": "中转站",
         "children": [
           {
-            "name": "查询网ip138",
-            "url": "https://www.ip138.com/"
-          },
-          {
-            "name": "ip111.cn | 国内、国外、谷歌测试",
-            "url": "https://ip111.cn/"
-          },
-          {
-            "name": "IPAddress.my | proxy",
-            "url": "https://www.ipaddress.my/"
-          },
-          {
-            "name": "IP地址查询",
-            "url": "https://tool.lu/ip/"
-          },
-          {
-            "name": "IPv6地址查询工具社区版",
-            "url": "https://ip.zxinc.org/ipquery/"
-          },
-          {
-            "name": "IP查询(ipw.cn)",
-            "url": "https://ipw.cn/"
-          },
-          {
-            "name": "ipcheck | 可部署github.com/jason5ng32/MyIP",
-            "url": "https://ipcheck.ing/#/"
-          },
-          {
-            "name": "IPv6连接测试 | 不支持境内v6",
-            "url": "https://test-ipv6.com/"
-          },
-          {
-            "name": "端口扫描",
-            "url": "https://tool.chinaz.com/port"
-          },
-          {
-            "name": "UDPing检测工具",
-            "url": "https://www.boce.com/udping"
-          },
-          {
-            "name": "ITdog",
-            "url": "https://www.itdog.cn/"
-          },
-          {
-            "name": "WebRTC Leak Test",
-            "url": "https://browserleaks.com/webrtc"
-          },
-          {
-            "name": "网络空间测绘",
-            "url": "https://fofa.info/"
+            "name": "神隐AI",
+            "url": "https://shenwenai.com/"
           }
         ]
+      },
+      {
+        "name": "AI订阅对比",
+        "url": "https://opentherank.com/zh/"
       }
     ]
   },
