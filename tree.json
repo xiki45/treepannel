@@ -399,6 +399,14 @@
           {
             "name": "随机地址和电话号码生成器",
             "url": "https://www.randaddress.com/zh/"
+          },
+          {
+            "name": "线上随机地址产生器",
+            "url": "https://www.addresscopy.com/"
+          },
+          {
+            "name": "美国地址生成器",
+            "url": "https://www.meiguodizhi.com/"
           }
         ]
       },
@@ -433,13 +441,33 @@
         "name": "网络加速",
         "children": [
           {
-            "name": "docker加速",
-            "children": [
-              {
-                "name": "毫秒镜像",
-                "url": "https://1ms.run/"
-              }
-            ]
+            "name": "Linux一键换源",
+            "url": "https://linuxmirrors.cn/"
+          },
+          {
+            "name": "毫秒镜像-docker加速镜像",
+            "url": "https://1ms.run/"
+          },
+          {
+            "name": "Github加速下载代理",
+            "url": "https://gh-proxy.com/"
+          }
+        ]
+      },
+      {
+        "name": "境外礼品卡商店",
+        "children": [
+          {
+            "name": "pockyt-us",
+            "url": "https://shop.pockyt.io/brands/all"
+          },
+          {
+            "name": "mtcgame",
+            "url": "https://www.mtcgame.com/"
+          },
+          {
+            "name": "oyunfor-turkey",
+            "url": "https://www.oyunfor.com/"
           }
         ]
       }
@@ -466,10 +494,6 @@
         ]
       },
       {
-        "name": "AI订阅对比",
-        "url": "https://opentherank.com/zh/"
-      },
-      {
         "name": "AI竞技场",
         "children": [
           {
@@ -477,6 +501,10 @@
             "url": "https://arena.ai/leaderboard/agent"
           }
         ]
+      },
+      {
+        "name": "AI订阅对比",
+        "url": "https://opentherank.com/zh/"
       }
     ]
   },
