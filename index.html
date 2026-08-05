@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>可配置树状导航</title>
+    <title>pannel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         /* ============================================
@@ -33,7 +33,14 @@
             --panel-bg: rgba(255, 255, 255, 0.82);
             --radius: 7px;
             --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+            /* Font scale driven by data-font-size on <html> */
+            --font-scale: 1;
         }
+
+        /* Font size presets */
+        [data-font-size="sm"] { --font-scale: 0.88; }
+        [data-font-size="lg"] { --font-scale: 1.15; }
+        [data-font-size="xl"] { --font-scale: 1.32; }
 
         [data-theme="dark"] {
             --bg: #191b21;
@@ -197,7 +204,7 @@
             margin-left: 4px;
             cursor: pointer;
             position: relative;
-            font-size: 13.5px;
+            font-size: calc(13.5px * var(--font-scale));
             font-weight: 400;
             line-height: 1.5;
         }
@@ -241,7 +248,7 @@
         }
 
         #tree-root > ul > li > .tree-item > a {
-            font-size: 14.5px;
+            font-size: calc(14.5px * var(--font-scale));
             font-weight: 600;
             letter-spacing: 0.02em;
             padding: 7px 12px;
@@ -253,7 +260,7 @@
 
         /* Second level */
         #tree-root > ul > li > ul > li > .tree-item > a {
-            font-size: 13.5px;
+            font-size: calc(13.5px * var(--font-scale));
             font-weight: 500;
         }
 
@@ -362,7 +369,7 @@
             color: var(--text-muted);
             padding: 5px 10px;
             margin-left: 4px;
-            font-size: 11.5px;
+            font-size: calc(11.5px * var(--font-scale));
             position: relative;
             text-transform: uppercase;
             letter-spacing: 0.08em;
@@ -486,151 +493,151 @@
             border-color: var(--border-hover);
         }
 
-        .contact-section { margin-bottom: 16px; }
+        /* === View Control Panel === */
+        .view-control-section { padding: 0; }
 
-        .section-title {
+        .control-group {
+            margin-bottom: 14px;
+        }
+
+        .control-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .control-label {
+            display: block;
             font-size: 10px;
             font-weight: 600;
             color: var(--text-muted);
-            margin-bottom: 10px;
+            margin-bottom: 7px;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            display: flex;
-            align-items: center;
-            gap: 6px;
             transition: color 0.35s ease;
         }
 
-        .section-title::before {
-            content: '';
-            display: inline-block;
-            width: 3px;
-            height: 10px;
-            background: var(--accent);
-            border-radius: 2px;
-            opacity: 0.6;
-            transition: background 0.35s ease;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 10px;
+        .control-select {
+            width: 100%;
+            padding: 8px 28px 8px 10px;
             background: var(--bg-hover);
-            border-radius: var(--radius);
-            margin-bottom: 6px;
-            transition: all 0.18s ease;
-            border: 1px solid transparent;
-        }
-
-        .contact-item:hover {
-            background: var(--accent-light);
-            border-color: var(--border-hover);
-            transform: translateX(2px);
-        }
-
-        .contact-icon {
-            width: 22px;
-            height: 22px;
-            background: linear-gradient(135deg, var(--accent) 0%, #3b5ce4 100%);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 9px;
-            font-weight: 600;
-            flex-shrink: 0;
-        }
-
-        .contact-info { flex: 1; }
-
-        .contact-name {
-            font-size: 11.5px;
-            color: var(--text-primary);
-            margin-bottom: 2px;
-            font-weight: 500;
-            transition: color 0.35s ease;
-        }
-
-        .contact-detail {
-            font-size: 10.5px;
-            color: var(--text-secondary);
-            transition: color 0.35s ease;
-        }
-
-        .lines-section { margin-top: 18px; }
-
-        .lines-section .section-title::before {
-            background: #34d399;
-        }
-
-        .line-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 10px;
-            background: var(--bg-hover);
-            border-radius: var(--radius);
-            margin-bottom: 6px;
-            transition: all 0.18s ease;
-            border: 1px solid transparent;
-        }
-
-        .line-item:hover {
-            border-color: var(--border);
-            transform: translateX(1px);
-        }
-
-        .line-status {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        .line-status.online {
-            background: #34d399;
-            box-shadow: 0 0 8px rgba(52, 211, 153, 0.35);
-        }
-
-        .line-status.offline {
-            background: #f87171;
-            box-shadow: 0 0 6px rgba(248, 113, 113, 0.3);
-        }
-
-        .line-status.maintenance {
-            background: #fbbf24;
-            box-shadow: 0 0 6px rgba(251, 191, 36, 0.3);
-        }
-
-        .line-info { flex: 1; }
-
-        .line-name {
-            font-size: 11.5px;
-            color: var(--text-primary);
-            margin-bottom: 2px;
-            font-weight: 500;
-            transition: color 0.35s ease;
-        }
-
-        .line-desc {
-            font-size: 10px;
-            color: var(--text-secondary);
-            transition: color 0.35s ease;
-        }
-
-        .line-speed {
-            font-size: 10px;
-            font-weight: 600;
-            padding: 3px 8px;
-            background: var(--bg-surface);
-            border-radius: 4px;
             border: 1px solid var(--border);
-            color: var(--text-secondary);
-            font-variant-numeric: tabular-nums;
-            transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease;
+            border-radius: var(--radius);
+            color: var(--text-primary);
+            font-size: 12.5px;
+            font-family: var(--font);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%239ca3af' d='M5 6L0 0h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+        }
+
+        .control-select:hover {
+            border-color: var(--border-hover);
+            background-color: var(--accent-light);
+        }
+
+        .control-select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .control-toggles {
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+        }
+
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 2px;
+        }
+
+        .toggle-label {
+            font-size: 12.5px;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.35s ease;
+        }
+
+        .toggle-switch {
+            width: 36px;
+            height: 20px;
+            border-radius: 10px;
+            border: none;
+            background: var(--text-muted);
+            cursor: pointer;
+            position: relative;
+            transition: background 0.25s ease;
+            padding: 0;
+            flex-shrink: 0;
+            opacity: 0.5;
+        }
+
+        .toggle-switch .toggle-knob {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .toggle-switch[aria-pressed="true"] {
+            background: var(--accent);
+            opacity: 1;
+        }
+
+        .toggle-switch[aria-pressed="true"] .toggle-knob {
+            transform: translateX(16px);
+        }
+
+        .toggle-switch:hover {
+            opacity: 0.85;
+        }
+
+        .toggle-switch[aria-pressed="true"]:hover {
+            opacity: 1;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        /* === View-control data attributes === */
+        /* Hide favicons / file icons */
+        html[data-show-favicon="false"] .favicon,
+        html[data-show-favicon="false"] .file-icon {
+            display: none;
+        }
+
+        /* Hide tree connection lines */
+        html[data-show-lines="false"] li::before,
+        html[data-show-lines="false"] li.active > ul::before {
+            display: none !important;
+        }
+
+        /* Compact mode */
+        html[data-compact="true"] li {
+            margin: 0;
+            padding-left: 20px;
+        }
+        html[data-compact="true"] .tree a {
+            padding: 3px 8px;
+        }
+        html[data-compact="true"] #tree-root > ul > li > .tree-item > a {
+            padding: 5px 12px;
+        }
+        html[data-compact="true"] .item-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
         }
 
         /* === Controls === */
@@ -669,13 +676,192 @@
             transform: scale(0.96);
         }
 
-        /* === Theme Toggle === */
-        .theme-toggle {
-            width: 32px;
-            height: 32px;
+        /* === Floating Toolbar (bottom-right) === */
+        .floating-toolbar {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1001;
+        }
+
+        .tool-btn {
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             border: 1px solid var(--border);
-            background: var(--bg-surface);
+            background: var(--panel-bg);
+            backdrop-filter: blur(14px) saturate(1.3);
+            -webkit-backdrop-filter: blur(14px) saturate(1.3);
+            box-shadow: var(--shadow-md);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            font-family: var(--font);
+            color: var(--text-secondary);
+        }
+
+        .tool-btn:hover {
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-lg), 0 0 16px var(--accent-glow);
+            transform: translateY(-2px);
+            color: var(--accent);
+        }
+
+        .tool-btn:active {
+            transform: scale(0.92);
+        }
+
+        /* Font-size toggle button */
+        .font-size-toggle {
+            flex-direction: row;
+        }
+
+        .font-icon {
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--text-primary);
+            transition: color 0.25s ease, transform 0.25s ease;
+            font-family: var(--font);
+        }
+
+        .tool-btn:hover .font-icon {
+            color: var(--accent);
+        }
+
+        .font-badge {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            min-width: 14px;
+            height: 14px;
+            padding: 0 3px;
+            border-radius: 7px;
+            background: var(--accent);
+            color: #fff;
+            font-size: 9px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            box-shadow: 0 0 6px var(--accent-glow);
+            transition: transform 0.25s ease;
+        }
+
+        .tool-btn:active .font-badge {
+            transform: scale(0.85);
+        }
+
+        /* Font-size wrapper & dropdown panel */
+        .font-size-wrapper {
+            position: relative;
+        }
+
+        .font-size-panel {
+            position: absolute;
+            bottom: calc(100% + 10px);
+            right: 0;
+            background: var(--panel-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(16px) saturate(1.3);
+            -webkit-backdrop-filter: blur(16px) saturate(1.3);
+            padding: 6px;
+            min-width: 140px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(8px) scale(0.94);
+            transform-origin: bottom right;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            z-index: 1002;
+        }
+
+        .font-size-panel.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+
+        .font-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: transparent;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-family: var(--font);
+            font-size: 12.5px;
+            font-weight: 500;
+            transition: all 0.15s ease;
+            gap: 14px;
+            text-align: left;
+        }
+
+        .font-option:hover {
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+
+        .font-option.active {
+            background: var(--accent-light);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .font-option-label {
+            flex: 1;
+        }
+
+        .font-option-preview {
+            color: var(--text-muted);
+            font-weight: 700;
+            line-height: 1;
+            transition: color 0.15s ease;
+        }
+
+        .font-option:hover .font-option-preview,
+        .font-option.active .font-option-preview {
+            color: var(--accent);
+        }
+
+        .font-option.active::before {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+            margin-right: 8px;
+            box-shadow: 0 0 6px var(--accent-glow);
+            flex-shrink: 0;
+        }
+
+        /* === Theme Toggle (now inside floating-toolbar) === */
+        .theme-toggle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--panel-bg);
+            backdrop-filter: blur(14px) saturate(1.3);
+            -webkit-backdrop-filter: blur(14px) saturate(1.3);
+            box-shadow: var(--shadow-md);
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -688,11 +874,12 @@
 
         .theme-toggle:hover {
             border-color: var(--border-hover);
-            box-shadow: 0 0 12px var(--accent-glow);
+            box-shadow: var(--shadow-lg), 0 0 16px var(--accent-glow);
+            transform: translateY(-2px);
         }
 
         .theme-toggle:active {
-            transform: scale(0.9);
+            transform: scale(0.92);
         }
 
         /* Sun icon (shown in light mode) */
@@ -774,7 +961,7 @@
             .tree a {
                 margin-left: 2px !important;
                 padding: 5px 6px !important;
-                font-size: 14px !important;
+                font-size: calc(14px * var(--font-scale)) !important;
             }
 
             .item-icon {
@@ -786,7 +973,7 @@
             .label-text {
                 padding: 4px 6px !important;
                 margin-left: 2px !important;
-                font-size: 11px !important;
+                font-size: calc(11px * var(--font-scale)) !important;
             }
 
             .controls {
@@ -812,6 +999,28 @@
                 right: 8px !important;
             }
 
+            .floating-toolbar {
+                bottom: 16px !important;
+                right: 16px !important;
+                gap: 8px;
+            }
+
+            .tool-btn, .theme-toggle {
+                width: 38px !important;
+                height: 38px !important;
+            }
+
+            .font-size-panel {
+                min-width: 124px;
+                padding: 5px;
+            }
+
+            .font-option {
+                padding: 7px 10px;
+                font-size: 12px;
+                gap: 10px;
+            }
+
             .tree-item {
                 min-height: 34px;
                 align-items: center;
@@ -834,7 +1043,7 @@
         }
 
         @media (max-width: 480px) {
-            .tree a { font-size: 13.5px !important; padding: 4px 5px !important; }
+            .tree a { font-size: calc(13.5px * var(--font-scale)) !important; padding: 4px 5px !important; }
             .item-icon { width: 15px !important; height: 15px !important; margin-right: 5px !important; }
             .tech-panel { width: 200px !important; padding: 14px !important; }
             ul { padding-left: 10px !important; }
@@ -857,77 +1066,91 @@
     <button class="toggle-panel" id="toggle-panel">＋</button>
     <div class="tech-panel" id="tech-panel">
         <div class="panel-header">
-            <div class="panel-title">控制面板</div>
+            <div class="panel-title">视图控制</div>
         </div>
-        <div class="contact-section">
-            <div class="section-title">联系方式</div>
-            <div class="contact-item">
-                <div class="contact-icon">邮</div>
-                <div class="contact-info">
-                    <div class="contact-name">邮箱</div>
-                    <div class="contact-detail">admin@example.com</div>
-                </div>
+        <div class="view-control-section">
+            <div class="control-group">
+                <label class="control-label" for="depth-select">展开深度</label>
+                <select id="depth-select" class="control-select">
+                    <option value="1" selected>仅顶级</option>
+                    <option value="2">到第 2 层</option>
+                    <option value="3">到第 3 层</option>
+                    <option value="all">全部展开</option>
+                </select>
             </div>
-            <div class="contact-item">
-                <div class="contact-icon">电</div>
-                <div class="contact-info">
-                    <div class="contact-name">Telegram</div>
-                    <div class="contact-detail">@username</div>
-                </div>
+            <div class="control-group">
+                <label class="control-label" for="sort-select">排序方式</label>
+                <select id="sort-select" class="control-select">
+                    <option value="default">默认顺序</option>
+                    <option value="az">字母 A → Z</option>
+                    <option value="za">字母 Z → A</option>
+                </select>
             </div>
-            <div class="contact-item">
-                <div class="contact-icon">Q</div>
-                <div class="contact-info">
-                    <div class="contact-name">QQ群</div>
-                    <div class="contact-detail">123456789</div>
+            <div class="control-toggles">
+                <div class="toggle-row">
+                    <span class="toggle-label">显示图标</span>
+                    <button class="toggle-switch" data-toggle="favicon" aria-pressed="true" aria-label="显示图标">
+                        <span class="toggle-knob"></span>
+                    </button>
                 </div>
-            </div>
-        </div>
-        <div class="lines-section">
-            <div class="section-title">线路状态</div>
-            <div class="line-item">
-                <div class="line-status online"></div>
-                <div class="line-info">
-                    <div class="line-name">主线路 - 香港CN2</div>
-                    <div class="line-desc">低延迟，稳定推荐</div>
+                <div class="toggle-row">
+                    <span class="toggle-label">连接线</span>
+                    <button class="toggle-switch" data-toggle="lines" aria-pressed="true" aria-label="显示连接线">
+                        <span class="toggle-knob"></span>
+                    </button>
                 </div>
-                <div class="line-speed">50ms</div>
-            </div>
-            <div class="line-item">
-                <div class="line-status online"></div>
-                <div class="line-info">
-                    <div class="line-name">备用线路 - 日本软银</div>
-                    <div class="line-desc">高速下载线路</div>
+                <div class="toggle-row">
+                    <span class="toggle-label">紧凑模式</span>
+                    <button class="toggle-switch" data-toggle="compact" aria-pressed="false" aria-label="紧凑模式">
+                        <span class="toggle-knob"></span>
+                    </button>
                 </div>
-                <div class="line-speed">80ms</div>
-            </div>
-            <div class="line-item">
-                <div class="line-status maintenance"></div>
-                <div class="line-info">
-                    <div class="line-name">备用线路 - 美国</div>
-                    <div class="line-desc">国际线路，维护中</div>
+                <div class="toggle-row">
+                    <span class="toggle-label">手风琴</span>
+                    <button class="toggle-switch" data-toggle="accordion" aria-pressed="false" aria-label="手风琴模式">
+                        <span class="toggle-knob"></span>
+                    </button>
                 </div>
-                <div class="line-speed">180ms</div>
-            </div>
-            <div class="line-item">
-                <div class="line-status offline"></div>
-                <div class="line-info">
-                    <div class="line-name">测试线路 - 新加坡</div>
-                    <div class="line-desc">暂时不可用</div>
-                </div>
-                <div class="line-speed">-</div>
             </div>
         </div>
     </div>
     
     <div class="controls">
         <button id="expand-all-btn" class="expand-btn">展开</button>
-        <button class="theme-toggle" id="theme-toggle" title="切换主题">
+    </div>
+    <div id="tree-root" class="tree"></div>
+
+    <!-- 右下角浮动工具栏：字号 + 主题 -->
+    <div class="floating-toolbar">
+        <div class="font-size-wrapper">
+            <button class="tool-btn font-size-toggle" id="font-size-toggle" title="字号：标准" aria-label="选择字号" aria-haspopup="true" aria-expanded="false">
+                <span class="font-icon">A</span>
+                <span class="font-badge" id="font-badge">2</span>
+            </button>
+            <div class="font-size-panel" id="font-size-panel" role="menu" aria-label="字号选项">
+                <button class="font-option" data-size="sm" role="menuitem">
+                    <span class="font-option-label">小</span>
+                    <span class="font-option-preview" style="font-size: 11px">Aa</span>
+                </button>
+                <button class="font-option" data-size="md" role="menuitem">
+                    <span class="font-option-label">标准</span>
+                    <span class="font-option-preview" style="font-size: 13px">Aa</span>
+                </button>
+                <button class="font-option" data-size="lg" role="menuitem">
+                    <span class="font-option-label">大</span>
+                    <span class="font-option-preview" style="font-size: 15px">Aa</span>
+                </button>
+                <button class="font-option" data-size="xl" role="menuitem">
+                    <span class="font-option-label">超大</span>
+                    <span class="font-option-preview" style="font-size: 17px">Aa</span>
+                </button>
+            </div>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" title="切换主题" aria-label="切换明暗主题">
             <span class="sun"></span>
             <span class="moon"></span>
         </button>
     </div>
-    <div id="tree-root" class="tree"></div>
 
     <script>
         // === 原有逻辑 (unchanged) ===
@@ -973,13 +1196,11 @@
                     if (isFolder) {
                         iconSpan.onclick = function(e) {
                             e.stopPropagation();
-                            li.classList.toggle('active');
-                            updateButtonState();
+                            toggleFolder(li);
                         };
                         a.onclick = function(e) {
                             e.preventDefault();
-                            li.classList.toggle('active');
-                            updateButtonState();
+                            toggleFolder(li);
                         };
                     }
                 } else if (isFolder) {
@@ -989,8 +1210,7 @@
                     folderIcon.title = '点击展开/折叠';
                     folderIcon.onclick = function(e) {
                         e.stopPropagation();
-                        li.classList.toggle('active');
-                        updateButtonState();
+                        toggleFolder(li);
                     };
                     iconSpan.appendChild(folderIcon);
                     const a = document.createElement('a');
@@ -999,8 +1219,7 @@
                     a.className = 'folder';
                     a.onclick = function(e) {
                         e.preventDefault();
-                        li.classList.toggle('active');
-                        updateButtonState();
+                        toggleFolder(li);
                     };
                     itemDiv.appendChild(iconSpan);
                     itemDiv.appendChild(a);
@@ -1072,6 +1291,159 @@
             }
         }
 
+        // === 文件夹展开/折叠（支持手风琴模式） ===
+        let accordionMode = false;
+        function toggleFolder(li) {
+            const willOpen = !li.classList.contains('active');
+            if (willOpen && accordionMode) {
+                const siblings = li.parentElement.children;
+                for (let i = 0; i < siblings.length; i++) {
+                    const sib = siblings[i];
+                    if (sib !== li && sib.classList.contains('active') && sib.querySelector(':scope > .tree-item .folder')) {
+                        sib.classList.remove('active');
+                    }
+                }
+            }
+            li.classList.toggle('active');
+            updateButtonState();
+        }
+
+        // === 视图控制（展开深度 / 排序 / 显示开关） ===
+        const viewSettings = {
+            _v: 2,
+            depth: '1',
+            sort: 'default',
+            favicon: true,
+            lines: true,
+            compact: false,
+            accordion: false
+        };
+
+        function loadViewSettings() {
+            try {
+                const saved = localStorage.getItem('tree-view');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (parsed._v === viewSettings._v) {
+                        Object.assign(viewSettings, parsed);
+                    } else {
+                        saveViewSettings(); // 版本不匹配，用新默认值覆盖旧存储
+                    }
+                }
+            } catch (e) {}
+        }
+
+        function saveViewSettings() {
+            try { localStorage.setItem('tree-view', JSON.stringify(viewSettings)); } catch (e) {}
+        }
+
+        // 计算 li 在树中的深度（顶级分类 = 1）
+        function getDepth(li) {
+            let depth = 0;
+            let node = li;
+            while (node && node.id !== 'tree-root') {
+                if (node.tagName === 'LI') depth++;
+                node = node.parentElement;
+            }
+            return depth;
+        }
+
+        // 按深度展开：深度 < target 的文件夹展开，其余折叠
+        function expandToDepth(target) {
+            document.querySelectorAll('#tree-root li').forEach(li => {
+                if (!li.querySelector(':scope > .tree-item .folder')) return;
+                const d = getDepth(li);
+                if (target === 'all' || d < parseInt(target, 10)) {
+                    li.classList.add('active');
+                } else {
+                    li.classList.remove('active');
+                }
+            });
+            updateButtonState();
+        }
+
+        // 分类内排序（不跨分类，顶级分类保持原序）
+        function sortTree(mode) {
+            const root = document.getElementById('tree-root');
+            document.querySelectorAll('#tree-root ul').forEach(ul => {
+                if (ul.parentElement === root) return; // 跳过顶级 ul
+                const lis = Array.from(ul.children);
+                lis.sort((a, b) => {
+                    const aEl = a.querySelector(':scope > .tree-item a, :scope > .tree-item .label-text');
+                    const bEl = b.querySelector(':scope > .tree-item a, :scope > .tree-item .label-text');
+                    const ta = aEl ? aEl.textContent.trim() : '';
+                    const tb = bEl ? bEl.textContent.trim() : '';
+                    return mode === 'az' ? ta.localeCompare(tb, 'zh') : tb.localeCompare(ta, 'zh');
+                });
+                lis.forEach(li => ul.appendChild(li));
+            });
+        }
+
+        // 应用树相关视图设置（renderTree 后调用）
+        function applyTreeView() {
+            expandToDepth(viewSettings.depth);
+            if (viewSettings.sort !== 'default') sortTree(viewSettings.sort);
+        }
+
+        // 初始化视图控制 UI
+        function initViewControl() {
+            loadViewSettings();
+            const root = document.documentElement;
+            root.setAttribute('data-show-favicon', viewSettings.favicon);
+            root.setAttribute('data-show-lines', viewSettings.lines);
+            root.setAttribute('data-compact', viewSettings.compact);
+            accordionMode = viewSettings.accordion;
+
+            const depthSelect = document.getElementById('depth-select');
+            const sortSelect = document.getElementById('sort-select');
+
+            // 同步 UI 状态
+            depthSelect.value = viewSettings.depth;
+            sortSelect.value = viewSettings.sort;
+            document.querySelectorAll('.toggle-switch').forEach(sw => {
+                const key = sw.getAttribute('data-toggle');
+                sw.setAttribute('aria-pressed', viewSettings[key] ? 'true' : 'false');
+            });
+
+            // 展开深度
+            depthSelect.addEventListener('change', () => {
+                viewSettings.depth = depthSelect.value;
+                expandToDepth(viewSettings.depth);
+                saveViewSettings();
+            });
+
+            // 排序
+            sortSelect.addEventListener('change', () => {
+                viewSettings.sort = sortSelect.value;
+                if (viewSettings.sort === 'default') {
+                    renderTree();
+                } else {
+                    sortTree(viewSettings.sort);
+                }
+                saveViewSettings();
+            });
+
+            // 显示开关
+            document.querySelectorAll('.toggle-switch').forEach(sw => {
+                sw.addEventListener('click', () => {
+                    const key = sw.getAttribute('data-toggle');
+                    viewSettings[key] = !viewSettings[key];
+                    sw.setAttribute('aria-pressed', viewSettings[key] ? 'true' : 'false');
+
+                    if (key === 'accordion') {
+                        accordionMode = viewSettings.accordion;
+                    } else if (key === 'favicon') {
+                        root.setAttribute('data-show-favicon', viewSettings.favicon);
+                    } else if (key === 'lines') {
+                        root.setAttribute('data-show-lines', viewSettings.lines);
+                    } else if (key === 'compact') {
+                        root.setAttribute('data-compact', viewSettings.compact);
+                    }
+                    saveViewSettings();
+                });
+            });
+        }
+
         // 展开/折叠控制
         let isAllExpanded = false;
         function toggleAllFolders() {
@@ -1103,13 +1475,17 @@
                 treeDom.style.paddingLeft = '0';
                 root.appendChild(treeDom);
             }
-            setTimeout(updateButtonState, 100);
+            setTimeout(() => {
+                updateButtonState();
+                applyTreeView();
+            }, 100);
         }
 
-        // 科技面板
+        // 视图控制面板开关
         function initTechPanel() {
             const panel = document.getElementById('tech-panel');
             const toggleBtn = document.getElementById('toggle-panel');
+
             toggleBtn.addEventListener('click', () => {
                 if (toggleBtn.textContent === '＋') {
                     panel.style.opacity = '1';
@@ -1126,25 +1502,94 @@
                     toggleBtn.click();
                 }
             });
-            document.querySelectorAll('.line-status.online').forEach(dot => {
-                setInterval(() => dot.style.opacity = dot.style.opacity === '0.7' ? '1' : '0.7', 2000);
-            });
         }
 
         // 初始化
         const expandBtn = document.getElementById('expand-all-btn');
         expandBtn.addEventListener('click', toggleAllFolders);
+        initViewControl();
         loadTreeData();
         setTimeout(initTechPanel, 100);
 
-        // === 新增：主题切换 ===
-        (function initThemeToggle() {
-            var toggle = document.getElementById('theme-toggle');
+        // === 新增：右下角浮动工具栏（主题 + 字号） ===
+        (function initFloatingToolbar() {
             var root = document.documentElement;
-            toggle.addEventListener('click', function() {
+            var themeBtn = document.getElementById('theme-toggle');
+            var fontBtn = document.getElementById('font-size-toggle');
+            var fontBadge = document.getElementById('font-badge');
+
+            // --- 主题切换（带持久化） ---
+            var savedTheme = null;
+            try { savedTheme = localStorage.getItem('tree-theme'); } catch (e) {}
+            if (savedTheme === 'dark' || savedTheme === 'light') {
+                root.setAttribute('data-theme', savedTheme);
+            }
+            themeBtn.addEventListener('click', function() {
                 var isDark = root.getAttribute('data-theme') === 'dark';
-                root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+                var next = isDark ? 'light' : 'dark';
+                root.setAttribute('data-theme', next);
+                try { localStorage.setItem('tree-theme', next); } catch (e) {}
             });
+
+            // --- 字号切换：下拉面板直接选档位 ---
+            var sizes = ['sm', 'md', 'lg', 'xl'];
+            var sizeLabels = { sm: '小', md: '标准', lg: '大', xl: '超大' };
+            var sizeBadge = { sm: '1', md: '2', lg: '3', xl: '4' };
+            var currentSize = 'md';
+            try {
+                var saved = localStorage.getItem('tree-font-size');
+                if (saved && sizes.indexOf(saved) !== -1) currentSize = saved;
+            } catch (e) {}
+
+            var fontPanel = document.getElementById('font-size-panel');
+            var fontOptions = fontPanel.querySelectorAll('.font-option');
+
+            applyFontSize(currentSize);
+
+            // 点击按钮：展开/收起面板
+            fontBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                var isOpen = fontPanel.classList.toggle('show');
+                fontBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            });
+
+            // 选项点击：立即应用并关闭
+            fontOptions.forEach(function(opt) {
+                opt.addEventListener('click', function() {
+                    currentSize = opt.getAttribute('data-size');
+                    applyFontSize(currentSize);
+                    try { localStorage.setItem('tree-font-size', currentSize); } catch (e) {}
+                    closePanel();
+                });
+            });
+
+            // 点击面板外部关闭
+            document.addEventListener('click', function(e) {
+                if (!fontPanel.contains(e.target) && !fontBtn.contains(e.target)) {
+                    closePanel();
+                }
+            });
+
+            // Esc 关闭
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && fontPanel.classList.contains('show')) {
+                    closePanel();
+                }
+            });
+
+            function closePanel() {
+                fontPanel.classList.remove('show');
+                fontBtn.setAttribute('aria-expanded', 'false');
+            }
+
+            function applyFontSize(size) {
+                root.setAttribute('data-font-size', size);
+                if (fontBadge) fontBadge.textContent = sizeBadge[size];
+                fontBtn.setAttribute('title', '字号：' + sizeLabels[size]);
+                fontOptions.forEach(function(opt) {
+                    opt.classList.toggle('active', opt.getAttribute('data-size') === size);
+                });
+            }
         })();
     </script>
 </body>
